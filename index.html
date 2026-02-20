@@ -604,7 +604,7 @@
             currentPage = page;
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-            
+
             if (page === 'timer') {
                 document.getElementById('timerPage').classList.add('active');
                 document.querySelector('.nav-tab:first-child').classList.add('active');
@@ -620,19 +620,19 @@
         function playAlarm() {
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
-            
+
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
-            
+
             oscillator.frequency.value = 800;
             oscillator.type = 'square';
-            
+
             gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
-            
+
             oscillator.start(audioContext.currentTime);
             oscillator.stop(audioContext.currentTime + 0.5);
-            
+
             // Play three beeps
             setTimeout(() => playBeep(), 600);
             setTimeout(() => playBeep(), 1200);
@@ -641,16 +641,16 @@
         function playBeep() {
             const oscillator = audioContext.createOscillator();
             const gainNode = audioContext.createGain();
-            
+
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
-            
+
             oscillator.frequency.value = 800;
             oscillator.type = 'square';
-            
+
             gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
             gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-            
+
             oscillator.start(audioContext.currentTime);
             oscillator.stop(audioContext.currentTime + 0.3);
         }
@@ -659,7 +659,7 @@
         function updateTimerDisplay() {
             const display = document.getElementById('timerDisplay');
             display.textContent = timeRemaining;
-            
+
             display.classList.remove('warning', 'danger');
             if (timeRemaining <= 10 && timeRemaining > 5) {
                 display.classList.add('warning');
@@ -672,11 +672,11 @@
             if (!isRunning) {
                 isRunning = true;
                 document.getElementById('startStopBtn').textContent = 'Stop';
-                
+
                 timerInterval = setInterval(() => {
                     timeRemaining--;
                     updateTimerDisplay();
-                    
+
                     if (timeRemaining <= 0) {
                         stopTimer();
                         playAlarm();
@@ -730,12 +730,12 @@
 
         function updateQueueDisplay() {
             const queueList = document.getElementById('queueList');
-            
+
             if (queue.length === 0) {
                 queueList.innerHTML = '<div class="empty-state">No speakers in queue</div>';
                 return;
             }
-            
+
             queueList.innerHTML = queue.map((item, index) => {
                 const count = getRepeatCount(item.name, item.period);
                 return `<div class="queue-item ${getColorClass(count)}">${index + 1}. ${item.name} (P${periodNumbers[item.period]})</div>`;
@@ -744,18 +744,20 @@
 
         function updateCurrentSpeaker() {
             const speakerDiv = document.getElementById('currentSpeaker');
-            
+
             if (queue.length === 0) {
                 speakerDiv.innerHTML = '<div class="empty-state">No speaker - Click a name to add to queue</div>';
                 speakerDiv.className = 'speaker-name';
                 return;
             }
-            
+
             const current = queue[0];
             const count = getRepeatCount(current.name, current.period);
-            const nameParts = current.name.split(' ');
-            const lastName = nameParts.slice(1).join(' ');
-            speakerDiv.textContent = `Senator ${lastName}`;
+            const nameParts = current.name.trim().split(' ');
+            const firstName = nameParts[0] || '';
+            const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : '';
+            const lastInitial = lastName ? lastName.charAt(0).toUpperCase() + '.' : '';
+            speakerDiv.textContent = lastInitial ? `Senator ${firstName} ${lastInitial}` : `Senator ${firstName}`;
             speakerDiv.className = `speaker-name ${getColorClass(count)}`;
         }
 
@@ -781,7 +783,7 @@
         function updateRoster() {
             const studentList = document.getElementById('studentList');
             const students = periods[currentPeriod];
-            
+
             studentList.innerHTML = students.map(name => {
                 const count = getRepeatCount(name, currentPeriod);
                 const colorClass = getColorClass(count);
@@ -807,7 +809,7 @@
         function addStudent() {
             const input = document.getElementById('newStudentInput');
             const name = input.value.trim();
-            
+
             if (name) {
                 periods[currentPeriod].push(name);
                 input.value = '';
@@ -829,4 +831,3 @@
     </script>
 </body>
 </html>
-
