@@ -310,6 +310,8 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            max-height: 450px;
+            overflow-y: auto;
         }
 
         .queue-item {
@@ -571,11 +573,11 @@
         };
 
         const periods = {
-            1: ['Kidus Abebe', 'Donna Andrew', 'Elizabeth Asif', 'Jaiden Benitez Aguilera', 'Sania Brooks', 'Alexa Calle Aparicio', 'Kenneth Conway', 'Daniela Cuellar', 'Nirjhar Dangi', 'Samista Dhungel', 'Lesli Ensaldo Garcia', 'Ahmet Eren', 'Zoraz Khan', 'Jake Kim', 'Zaid Kinani', 'Reilly Kunkel', 'Matthew Montgomery', 'Melvin Morgan', 'Emma Orsino', 'Nihal Pradhan', 'Kaynat Sahru', 'Priyani Shrestha', 'Annie Song', 'Angel Torres', 'Astrid Treminio', 'Aidan Vazquez', 'Abigail Yi'],
-            2: ['Nathan Andrews', 'Nidhi Bandi', 'Yara Baroudy', 'Hiranmayi Bhargavi', 'Nicholas Bui', 'Caysen Chadha', 'Aubrey Chan', 'Jayla Eddy', 'Muhammad Eisa', 'Falyn Forcier', 'Kristen Gatus', 'Tara Gosney', 'Madelline Joa', 'Marnella Kased', 'Chelsea Kim', 'Elisa Kim', 'Annabel Lee', 'Jesse Min', 'Joshua Montoya', 'Daniel Oh', 'Kaitlyn Powderly', 'Victoria Rogers', 'Graham Rosenberg', 'Henry To', 'Rachel Williams', 'Bianca Zarate Del Rio'],
-            3: ['Christopher Atya', 'Khaliunaa Batbold', 'Nicholas Bolivar', 'Jayden Cho', 'Caroline Chubb', 'Kobe Clement', 'Isabella Digiulian', 'Pritya Faransis', 'Martin Gailliot Iii', 'Kareem Ghousheh', 'Hope Green', 'Sultana Habibi', 'Hassib Karmand', 'Kaitlyn Lee', 'Sienna Lucas', 'Imani Lyles', 'Rajwardhan Mankar', 'Abigail Menelik', 'Christine Park', 'Evelyn Puri', 'Guilherme Sales', 'Rana Sidahmed', 'Cardin Stover', 'Lindsey Vu'],
-            4: ['Lauren Asif', 'Ronan Beard', 'Eric Brown', 'Jacklyn Byun', 'David Campbell', 'Kate Choi', 'Jillian Couch', 'Hailey Cronin', 'Kelsi Garcia Vanegas', 'Jeniffer Gonzalez-Diaz', 'Bani Kaur', 'Adeline Kiefaber', 'SEUNGMIN KIM', 'Taylor Lekuch', 'Sydney Martin', 'Kathryn Mazur', 'Ellie Pyo', 'Mahshid Marwa Rasuli', 'Brenda Rosas-Diego', 'Emily Salcines', 'Naya Sohi', 'Jamie Staley', 'Hamad Tariq', 'Mohammed Tariq', 'Dylan Vickers', 'Hirra Wardak'],
-            5: ['Mahtab Ahmad', 'Lnia Azeez', 'Forogh Mena Basiri', 'Emily Chinjiguur', 'Sydney Ellis', 'Anu Javkhlan', 'Londun Jones', 'Chae-Kyong Kim', 'Rachel Kim', 'Makayla McKinney', 'Daniel Micah', 'Meilyn Rodriguez', 'Mateo Santiago', 'Kriti Sriram', 'Madelyn Vanderhorst', 'Walter Zirk']
+            1: ['Christopher Baker (Teacher)', 'Kidus Abebe', 'Donna Andrew', 'Elizabeth Asif', 'Jaiden Benitez Aguilera', 'Sania Brooks', 'Alexa Calle Aparicio', 'Kenneth Conway', 'Daniela Cuellar', 'Nirjhar Dangi', 'Samista Dhungel', 'Lesli Ensaldo Garcia', 'Ahmet Eren', 'Zoraz Khan', 'Jake Kim', 'Zaid Kinani', 'Reilly Kunkel', 'Matthew Montgomery', 'Melvin Morgan', 'Emma Orsino', 'Nihal Pradhan', 'Kaynat Sahru', 'Priyani Shrestha', 'Annie Song', 'Angel Torres', 'Astrid Treminio', 'Aidan Vazquez', 'Abigail Yi'],
+            2: ['Christopher Baker (Teacher)', 'Nathan Andrews', 'Nidhi Bandi', 'Yara Baroudy', 'Hiranmayi Bhargavi', 'Nicholas Bui', 'Caysen Chadha', 'Aubrey Chan', 'Jayla Eddy', 'Muhammad Eisa', 'Falyn Forcier', 'Kristen Gatus', 'Tara Gosney', 'Madelline Joa', 'Marnella Kased', 'Chelsea Kim', 'Elisa Kim', 'Annabel Lee', 'Jesse Min', 'Joshua Montoya', 'Daniel Oh', 'Kaitlyn Powderly', 'Victoria Rogers', 'Graham Rosenberg', 'Henry To', 'Rachel Williams', 'Bianca Zarate Del Rio'],
+            3: ['Christopher Baker (Teacher)', 'Christopher Atya', 'Khaliunaa Batbold', 'Nicholas Bolivar', 'Jayden Cho', 'Caroline Chubb', 'Kobe Clement', 'Isabella Digiulian', 'Pritya Faransis', 'Martin Gailliot Iii', 'Kareem Ghousheh', 'Hope Green', 'Sultana Habibi', 'Hassib Karmand', 'Kaitlyn Lee', 'Sienna Lucas', 'Imani Lyles', 'Rajwardhan Mankar', 'Abigail Menelik', 'Christine Park', 'Evelyn Puri', 'Guilherme Sales', 'Rana Sidahmed', 'Cardin Stover', 'Lindsey Vu'],
+            4: ['Christopher Baker (Teacher)', 'Lauren Asif', 'Ronan Beard', 'Eric Brown', 'Jacklyn Byun', 'David Campbell', 'Kate Choi', 'Jillian Couch', 'Hailey Cronin', 'Kelsi Garcia Vanegas', 'Jeniffer Gonzalez-Diaz', 'Bani Kaur', 'Adeline Kiefaber', 'SEUNGMIN KIM', 'Taylor Lekuch', 'Sydney Martin', 'Kathryn Mazur', 'Ellie Pyo', 'Mahshid Marwa Rasuli', 'Brenda Rosas-Diego', 'Emily Salcines', 'Naya Sohi', 'Jamie Staley', 'Hamad Tariq', 'Mohammed Tariq', 'Dylan Vickers', 'Hirra Wardak'],
+            5: ['Christopher Baker (Teacher)', 'Mahtab Ahmad', 'Lnia Azeez', 'Forogh Mena Basiri', 'Emily Chinjiguur', 'Sydney Ellis', 'Anu Javkhlan', 'Londun Jones', 'Chae-Kyong Kim', 'Rachel Kim', 'Makayla McKinney', 'Daniel Micah', 'Meilyn Rodriguez', 'Mateo Santiago', 'Kriti Sriram', 'Madelyn Vanderhorst', 'Walter Zirk']
         };
 
         let queue = [];
